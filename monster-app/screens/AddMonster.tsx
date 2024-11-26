@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
-import { View, TextInput, Button, Alert, StyleSheet, ScrollView, TouchableOpacity, Image } from 'react-native';
+import { View, Text, TextInput, Button, Alert, StyleSheet, ScrollView, TouchableOpacity, Image } from 'react-native';
 import { useDispatch } from 'react-redux';
 import { addMonster } from '../redux/monsterSlice'; 
 import { addMonster as addMonsterToAPI } from '../monsterApi'; 
 import imageMapping from '../utils/imgaMapping';
+import ButtonNavigate from '../components/Button';
 
 const availableImages = Object.keys(imageMapping); 
 
@@ -39,6 +40,7 @@ const AddMonster = () => {
 
   return (
     <View style={styles.container}>
+      <Text style={styles.txtimg}>Fyll i fälten och välj monster bild</Text>
       <TextInput
         style={styles.input}
         placeholder="Namn"
@@ -59,6 +61,7 @@ const AddMonster = () => {
         onChangeText={setEyes}
       />
       
+        <Text style={styles.txtimg}>Skrolla åt höger i bilderna för att se fler monster.. ➡️➡️</Text>
       <ScrollView horizontal style={styles.imageSelector}>
         {availableImages.map((imageName) => (
           <TouchableOpacity key={imageName} onPress={() => setImage(imageName)}>
@@ -69,14 +72,14 @@ const AddMonster = () => {
 
       {image && <Image source={imageMapping[image]} style={styles.selectedImage} />}
       
-      <Button title="Lägg till Monster" onPress={handleAddMonster} />
+      <ButtonNavigate title="Lägg till Monster" navigate={handleAddMonster} />
     </View>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
-    padding: 20,
+    padding: 40,
   },
   input: {
     height: 40,
@@ -87,19 +90,26 @@ const styles = StyleSheet.create({
   },
   imageSelector: {
     marginBottom: 20,
+    marginTop: 50
   },
   images: {
-    width: 80,
-    height: 80,
+    width: 120,
+    height: 120,
     marginRight: 10,
-    resizeMode: 'contain',
+    // resizeMode: 'contain',
   },
   selectedImage: {
     width: 200,
     height: 200,
-    marginTop: 20,
-    resizeMode: 'contain',
+    marginTop: 40,
+    // resizeMode: 'contain',
   },
+  txtimg:{
+    marginTop: 20,
+    fontSize: 20,
+    fontWeight: "bold",
+    marginBottom: 10
+  }
 });
 
 export default AddMonster;
