@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, Button, Alert, StyleSheet, ScrollView, TouchableOpacity, Image } from 'react-native';
+import { Text, TextInput, Button, Alert, StyleSheet, ScrollView, TouchableOpacity, Image } from 'react-native';
 import { useDispatch } from 'react-redux';
 import { addMonster } from '../redux/monsterSlice'; 
 import { addMonster as addMonsterToAPI } from '../monsterApi'; 
@@ -16,6 +16,10 @@ const AddMonster = () => {
   const [image, setImage] = useState('');
 
   const handleAddMonster = async () => {
+    if(!name.trim() || !color.trim() || !eyes || isNaN(parseInt(eyes, 10)) || !image){
+      Alert.alert("fyll i alla fält")
+      return
+    }
     const newMonster = {
       name,
       color,
@@ -39,7 +43,7 @@ const AddMonster = () => {
   };
 
   return (
-    <View style={styles.container}>
+    <ScrollView style={styles.container}>
       <Text style={styles.txtimg}>Fyll i fälten och välj monster bild</Text>
       <TextInput
         style={styles.input}
@@ -73,42 +77,42 @@ const AddMonster = () => {
       {image && <Image source={imageMapping[image]} style={styles.selectedImage} />}
       
       <ButtonNavigate title="Lägg till Monster" navigate={handleAddMonster} />
-    </View>
+    </ScrollView>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
     padding: 40,
+    marginTop: 20 
   },
   input: {
     height: 40,
     borderColor: 'gray',
     borderWidth: 1,
-    marginBottom: 10,
     paddingLeft: 8,
+    marginBottom: 20
   },
   imageSelector: {
-    marginBottom: 20,
-    marginTop: 50
+    marginBottom: 40,
+    marginTop: 40
   },
   images: {
-    width: 120,
-    height: 120,
+    width: 60,
+    height: 60,
     marginRight: 10,
-    // resizeMode: 'contain',
   },
   selectedImage: {
-    width: 200,
-    height: 200,
-    marginTop: 40,
-    // resizeMode: 'contain',
+    width: 150,
+    height: 150,
+    flex: 1,
+   alignSelf: "center"
   },
   txtimg:{
     marginTop: 20,
     fontSize: 20,
     fontWeight: "bold",
-    marginBottom: 10
+    marginBottom: 30,
   }
 });
 
