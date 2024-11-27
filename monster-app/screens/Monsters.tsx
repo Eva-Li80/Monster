@@ -23,7 +23,7 @@ const Monsters = ({ navigation }: Props) => {
           <Pressable
             key={monster.id}
             onPress={() => {
-              navigation.navigate('Monster');
+              navigation.navigate('Monster', {monster});
             }}
           >
             <MonsterCard

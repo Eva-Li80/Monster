@@ -28,6 +28,9 @@ export interface Monster {
   export type RootStackParamList = {
     Home: undefined;
     Monsters: undefined;
-    Monster: undefined;
+    Monster: { monster: { id: string; name: string; color: string; eyes: number; image: string } }
+    Feed: {monster: Monster | null}
+    SwithMonsterAccount: undefined;
+    Posts: undefined
   };
   

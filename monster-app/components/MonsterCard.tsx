@@ -19,9 +19,7 @@ const MonsterCard = ({ img, title, color, eyes }: MonsterCardProps) => (
         <Text variant="bodyMedium">{title} har {color} färg</Text>
         <Text variant="bodyMedium">{` & ${eyes === 1 ? "1  öga" : `${eyes} stycken ögon`}`}</Text>
       </Card.Content>
-      <Card.Actions>
-        <Button>Se fler saker om mig</Button>
-      </Card.Actions>
+       <Text>Se mina inlägg 👋 🥰 ⬆️</Text>
     </Card>
   </>
 );

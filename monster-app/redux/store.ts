@@ -1,9 +1,11 @@
 import { configureStore } from '@reduxjs/toolkit';
 import monsterReducer from "./monsterSlice"
+import PostReducer from "./postSlice"
 
 export const store = configureStore({
   reducer: {
     monsters: monsterReducer,
+    Posts: PostReducer,
   },
 });
 

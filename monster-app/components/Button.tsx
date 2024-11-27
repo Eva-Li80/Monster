@@ -2,7 +2,7 @@ import React from "react";
 import { TouchableOpacity, Text, View, StyleSheet } from "react-native";
 
 type ButtonProps = {
-  title: string;
+  title: string | any;
   navigate: () => void;
 };
 
